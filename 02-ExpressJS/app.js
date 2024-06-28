@@ -1,6 +1,6 @@
 // console.log(`Express JS tutorials`);
 
-// const http = require("http");
+// const http = require("http"); // no need this approach because we used modern es6 approach
 import http from "http";
 const server = http.createServer((req, res) => {
   if (req.url === "/") {

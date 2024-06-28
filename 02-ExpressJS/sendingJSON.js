@@ -1,10 +1,10 @@
 import express from "express";
-import { join } from "path";
-import route from "./routes/route.js";
+import { products } from "./data.js";
 const app = express();
 
-app.set("view engine", "ejs");
-app.use("/", route);
+app.get("/products", (req, res) => {
+  res.json(products);
+});
 
 app.listen(5000, () => {
   console.log(`Server is listening to port no 5000`);
