@@ -7,5 +7,22 @@
   </head>
   <body>
     <h1>Home idu 👉 🏠🏡</h1>
+    <!-- Display variables -->
+    <%= name %>
+    <!-- <%= name.toUpperCase() %> -->
+
+    <!-- COnditional Statement -->
+    <% if (userId===20) { %>
+    <h1>User ID: <%= userId %></h1>
+    <% } else if (userId === 30) { %>
+    <h1>User ID: <%= userId %></h1>
+    <% } else { %>
+    <h2>No user exists for the given Id</h2>
+    <% } %>
+
+    <!-- For Loop -->
+    <% for (let i = 1; i <= 10; i++) { %>
+    <h1><%= i %></h1>
+    <% } %>
   </body>
 </html>
