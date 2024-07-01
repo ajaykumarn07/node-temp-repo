@@ -16,23 +16,23 @@ const movieSchema = new mongoose.Schema({
 const MovieModel = mongoose.model("Movie", movieSchema);
 
 // Insert document
-// const createDoc = async () => {
-//   try {
-//     // creating new documents
-//     const m1 = new MovieModel({
-//       name: "Ondhu Sarala Prema Kathe",
-//       ratings: 4.7,
-//       money: 100000,
-//       genre: ["Drama", "Comedy"],
-//       isActive: true,
-//       comments: [{ value: "A good feel movie." }],
-//     });
-//     const result = await m1.save();
-//     console.log(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+const createDoc = async () => {
+  try {
+    // creating new documents
+    const m1 = new MovieModel({
+      name: "Dummy Movie",
+      ratings: 1.7,
+      money: 100000,
+      genre: ["Cringe", "Comedy"],
+      isActive: true,
+      comments: [{ value: "A nkn movie." }],
+    });
+    const result = await m1.save();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const insertManyDocs = async () => {
   try {
@@ -92,14 +92,99 @@ const insertManyDocs = async () => {
   }
 };
 
-// retrieving the data 
-const allDoc = async ()=>{
+// retrieving all the data
+const allDoc = async () => {
   try {
     const result = await MovieModel.find(); // All the data
+    // const result = await MovieModel.find({name:"KGF 2"}); // fetches only KGF 2 data
+    // const result = await MovieModel.find().limit(2); // it will fetch only 2 data
+    // const result = await MovieModel.find().skip(2); // it will skip first 2
+    // const result = await MovieModel.find().countDocuments(); // display number of data
+    // const result = await MovieModel.find().sort({name:-1}); // sort the name in descending order
+    // const result = await MovieModel.find().sort({name:1}); // sort the name in ascending order
+    // const result = await MovieModel.find({money:{$gt:60000}}); // fetches all the data that matches the operator condition
+    // const result = await MovieModel.find({money:{$lt:100000}}); // fetches all the data that matches the operator condition
+    // const result = await MovieModel.find({$and: [{money:100000}]}); // fetches all the data that matches the operator condition
     console.log(result);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export { insertManyDocs, allDoc };
+// retrieving single data
+const singleDoc = async () => {
+  try {
+    // const result = await MovieModel.findById('668251d64e720fadcbb1d27c');
+    const result = await MovieModel.findById(
+      "668251d64e720fadcbb1d27c",
+      "name"
+    );
+    console.clear();
+    console.log(result);
+    // console.log(result.name);
+    // console.log(result.genre);
+    // console.log(result.ratings);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// update by ID
+const updateById = async (id) => {
+  try {
+    // updateOne(filter, whatToChange?)
+    const result = await MovieModel.updateOne({ _id: id }, { ratings: 4.8 });
+    console.clear();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Update Many
+const updateMany = async () => {
+  try {
+    const result = await MovieModel.updateMany(
+      { ratings: 4.7 },
+      { comments: [{ value: "5 Star Rating Movies" }] }
+    );
+    console.clear();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Delete a document
+const deleteById = async (id) => {
+  try {
+    // const result = await MovieModel.findByIdAndDelete({ _id: id });
+    const result = await MovieModel.deleteOne({ _id: id });
+    console.clear();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// deleteMany()
+const deleteMany = async () => {
+  try {
+    // const result = await MovieModel.findByIdAndDelete({ _id: id });
+    const result = await MovieModel.deleteMany({ ratings: 1.7 });
+    console.clear();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export {
+  createDoc,
+  insertManyDocs,
+  allDoc,
+  singleDoc,
+  updateById,
+  updateMany,
+  deleteById,
+  deleteMany,
+};
