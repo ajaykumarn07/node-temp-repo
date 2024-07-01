@@ -92,4 +92,14 @@ const insertManyDocs = async () => {
   }
 };
 
-export { insertManyDocs };
+// retrieving the data 
+const allDoc = async ()=>{
+  try {
+    const result = await MovieModel.find(); // All the data
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { insertManyDocs, allDoc };
